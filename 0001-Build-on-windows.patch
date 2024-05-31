@@ -1,0 +1,392 @@
+diff --git a/package.json b/package.json
+index daa5a214..1ba39d3d 100644
+--- a/package.json
++++ b/package.json
+@@ -21,7 +21,7 @@
+         "packages/*"
+     ],
+     "scripts": {
+-        "build:clearcache": "rm -rf node_modules/.cache/turbo",
++        "build:clearcache": "rimraf node_modules/.cache/turbo",
+         "clean": "turbo run clean",
+         "build": "turbo run build",
+         "test:unit": "jest --no-cache --runInBand --config jest.config.ts",
+@@ -44,17 +44,20 @@
+         "@typescript-eslint/eslint-plugin": "^6.7.4",
+         "@typescript-eslint/parser": "^6.7.4",
+         "canvas": "^2.11.2",
++        "copyfiles": "^2.4.1",
+         "eslint": "^8.50.0",
+         "eslint-plugin-react": "^7.33.2",
+         "jest": "^29.7.0",
+         "jest-environment-jsdom": "^29.7.0",
+         "jest-puppeteer": "^9.0.1",
++        "mkdirp": "^3.0.1",
+         "path2d-polyfill": "^2.0.1",
+         "pdfjs-dist": "^4.0.379",
+         "prettier": "^3.0.3",
+         "puppeteer": "^21.3.6",
+         "react": "^18.2.0",
+         "react-dom": "^18.2.0",
++        "rimraf": "^5.0.5",
+         "rollup": "^3.29.4",
+         "sass": "^1.68.0",
+         "ts-jest": "^29.1.1",
+diff --git a/packages/attachment/package.json b/packages/attachment/package.json
+index 342d14e7..638f5fe2 100644
+--- a/packages/attachment/package.json
++++ b/packages/attachment/package.json
+@@ -43,9 +43,9 @@
+         "access": "public"
+     },
+     "scripts": {
+-        "clean": "rm -rf lib && mkdir lib",
++        "clean": "rimraf lib && mkdirp lib",
+         "build": "npm run clean && npm run js && npm run css",
+-        "js": "cp src/index.d.ts lib && cp dist/index.js lib && rollup -c ../../rollup.config.cjs",
++        "js": "copyfiles src/index.d.ts lib && copyfiles dist/index.js lib && rollup -c ../../rollup.config.cjs",
+         "css": "sass --no-source-map --style compressed src/styles/index.scss lib/styles/index.css",
+         "release": "npm publish --access public"
+     }
+diff --git a/packages/bookmark/package.json b/packages/bookmark/package.json
+index 34b491d0..669e01f6 100644
+--- a/packages/bookmark/package.json
++++ b/packages/bookmark/package.json
+@@ -43,9 +43,9 @@
+         "access": "public"
+     },
+     "scripts": {
+-        "clean": "rm -rf lib && mkdir lib",
++        "clean": "rimraf lib && mkdirp lib",
+         "build": "npm run clean && npm run js && npm run css",
+-        "js": "cp src/index.d.ts lib && cp dist/index.js lib && rollup -c ../../rollup.config.cjs",
++        "js": "copyfiles src/index.d.ts lib && copyfiles dist/index.js lib && rollup -c ../../rollup.config.cjs",
+         "css": "sass --no-source-map --style compressed src/styles/index.scss lib/styles/index.css",
+         "release": "npm publish --access public"
+     }
+diff --git a/packages/core/package.json b/packages/core/package.json
+index e79acd23..7bd7fee6 100644
+--- a/packages/core/package.json
++++ b/packages/core/package.json
+@@ -40,9 +40,9 @@
+         "access": "public"
+     },
+     "scripts": {
+-        "clean": "rm -rf lib && mkdir lib",
++        "clean": "rimraf lib && mkdirp lib",
+         "build": "npm run clean && npm run js && npm run css",
+-        "js": "cp src/index.d.ts lib && cp dist/index.js lib && rollup -c ../../rollup.config.cjs",
++        "js": "copyfiles src/index.d.ts lib && copyfiles dist/index.js lib && rollup -c ../../rollup.config.cjs",
+         "css": "sass --no-source-map --style compressed src/styles/index.scss lib/styles/index.css",
+         "test": "jest --config ../../jest.config.js",
+         "release": "npm publish --access public"
+diff --git a/packages/default-layout/package.json b/packages/default-layout/package.json
+index 3fcad6f2..fa918513 100644
+--- a/packages/default-layout/package.json
++++ b/packages/default-layout/package.json
+@@ -47,9 +47,9 @@
+         "access": "public"
+     },
+     "scripts": {
+-        "clean": "rm -rf lib && mkdir lib",
++        "clean": "rimraf lib && mkdirp lib",
+         "build": "npm run clean && npm run js && npm run css",
+-        "js": "cp src/index.d.ts lib && cp dist/index.js lib && rollup -c ../../rollup.config.cjs",
++        "js": "copyfiles src/index.d.ts lib && copyfiles dist/index.js lib && rollup -c ../../rollup.config.cjs",
+         "css": "sass --no-source-map --style compressed src/styles/index.scss lib/styles/index.css",
+         "release": "npm publish --access public"
+     }
+diff --git a/packages/drop/package.json b/packages/drop/package.json
+index c4e94cf8..592e6871 100644
+--- a/packages/drop/package.json
++++ b/packages/drop/package.json
+@@ -43,9 +43,9 @@
+         "access": "public"
+     },
+     "scripts": {
+-        "clean": "rm -rf lib && mkdir lib",
++        "clean": "rimraf lib && mkdirp lib",
+         "build": "npm run clean && npm run js && npm run css",
+-        "js": "cp src/index.d.ts lib && cp dist/index.js lib && rollup -c ../../rollup.config.cjs",
++        "js": "copyfiles src/index.d.ts lib && copyfiles dist/index.js lib && rollup -c ../../rollup.config.cjs",
+         "css": "sass --no-source-map --style compressed src/styles/index.scss lib/styles/index.css",
+         "release": "npm publish --access public"
+     }
+diff --git a/packages/full-screen/package.json b/packages/full-screen/package.json
+index 2e2025ae..2b017225 100644
+--- a/packages/full-screen/package.json
++++ b/packages/full-screen/package.json
+@@ -43,9 +43,9 @@
+         "access": "public"
+     },
+     "scripts": {
+-        "clean": "rm -rf lib && mkdir lib",
++        "clean": "rimraf lib && mkdirp lib",
+         "build": "npm run clean && npm run js && npm run css",
+-        "js": "cp src/index.d.ts lib && cp dist/index.js lib && rollup -c ../../rollup.config.cjs",
++        "js": "copyfiles src/index.d.ts lib && copyfiles dist/index.js lib && rollup -c ../../rollup.config.cjs",
+         "css": "sass --no-source-map --style compressed src/styles/index.scss lib/styles/index.css",
+         "release": "npm publish --access public"
+     }
+diff --git a/packages/get-file/package.json b/packages/get-file/package.json
+index 16adf94a..af5ceace 100644
+--- a/packages/get-file/package.json
++++ b/packages/get-file/package.json
+@@ -43,8 +43,8 @@
+         "access": "public"
+     },
+     "scripts": {
+-        "clean": "rm -rf lib && mkdir lib",
+-        "build": "npm run clean && cp src/index.d.ts lib && cp dist/index.js lib && rollup -c ../../rollup.config.cjs",
++        "clean": "rimraf lib && mkdirp lib",
++        "build": "npm run clean && copyfiles src/index.d.ts lib && copyfiles dist/index.js lib && rollup -c ../../rollup.config.cjs",
+         "release": "npm publish --access public"
+     }
+ }
+diff --git a/packages/highlight/package.json b/packages/highlight/package.json
+index e8581dde..7b55cdfc 100644
+--- a/packages/highlight/package.json
++++ b/packages/highlight/package.json
+@@ -43,9 +43,9 @@
+         "access": "public"
+     },
+     "scripts": {
+-        "clean": "rm -rf lib && mkdir lib",
++        "clean": "rimraf lib && mkdirp lib",
+         "build": "npm run clean && npm run js && npm run css",
+-        "js": "cp src/index.d.ts lib && cp dist/index.js lib && rollup -c ../../rollup.config.cjs",
++        "js": "copyfiles src/index.d.ts lib && copyfiles dist/index.js lib && rollup -c ../../rollup.config.cjs",
+         "css": "sass --no-source-map --style compressed src/styles/index.scss lib/styles/index.css",
+         "release": "npm publish --access public"
+     }
+diff --git a/packages/locale-switcher/package.json b/packages/locale-switcher/package.json
+index 353455d0..635fda43 100644
+--- a/packages/locale-switcher/package.json
++++ b/packages/locale-switcher/package.json
+@@ -43,8 +43,8 @@
+         "access": "public"
+     },
+     "scripts": {
+-        "clean": "rm -rf lib && mkdir lib",
+-        "build": "npm run clean && cp src/index.d.ts lib && cp dist/index.js lib && rollup -c ../../rollup.config.cjs",
++        "clean": "rimraf lib && mkdirp lib",
++        "build": "npm run clean && copyfiles src/index.d.ts lib && copyfiles dist/index.js lib && rollup -c ../../rollup.config.cjs",
+         "release": "npm publish --access public"
+     }
+ }
+diff --git a/packages/open/package.json b/packages/open/package.json
+index 32dca3e4..1e3c1764 100644
+--- a/packages/open/package.json
++++ b/packages/open/package.json
+@@ -43,9 +43,9 @@
+         "access": "public"
+     },
+     "scripts": {
+-        "clean": "rm -rf lib && mkdir lib",
++        "clean": "rimraf lib && mkdirp lib",
+         "build": "npm run clean && npm run js && npm run css",
+-        "js": "cp src/index.d.ts lib && cp dist/index.js lib && rollup -c ../../rollup.config.cjs",
++        "js": "copyfiles src/index.d.ts lib && copyfiles dist/index.js lib && rollup -c ../../rollup.config.cjs",
+         "css": "sass --no-source-map --style compressed src/styles/index.scss lib/styles/index.css",
+         "release": "npm publish --access public"
+     }
+diff --git a/packages/page-navigation/package.json b/packages/page-navigation/package.json
+index e656e85c..bb8ea78b 100644
+--- a/packages/page-navigation/package.json
++++ b/packages/page-navigation/package.json
+@@ -43,9 +43,9 @@
+         "access": "public"
+     },
+     "scripts": {
+-        "clean": "rm -rf lib && mkdir lib",
++        "clean": "rimraf lib && mkdirp lib",
+         "build": "npm run clean && npm run js && npm run css",
+-        "js": "cp src/index.d.ts lib && cp dist/index.js lib && rollup -c ../../rollup.config.cjs",
++        "js": "copyfiles src/index.d.ts lib && copyfiles dist/index.js lib && rollup -c ../../rollup.config.cjs",
+         "css": "sass --no-source-map --style compressed src/styles/index.scss lib/styles/index.css",
+         "release": "npm publish --access public"
+     }
+diff --git a/packages/print/package.json b/packages/print/package.json
+index 31ebca61..f2abd00f 100644
+--- a/packages/print/package.json
++++ b/packages/print/package.json
+@@ -43,9 +43,9 @@
+         "access": "public"
+     },
+     "scripts": {
+-        "clean": "rm -rf lib && mkdir lib",
++        "clean": "rimraf lib && mkdirp lib",
+         "build": "npm run clean && npm run js && npm run css",
+-        "js": "cp src/index.d.ts lib && cp dist/index.js lib && rollup -c ../../rollup.config.cjs",
++        "js": "copyfiles src/index.d.ts lib && copyfiles dist/index.js lib && rollup -c ../../rollup.config.cjs",
+         "css": "sass --no-source-map --style compressed src/styles/index.scss lib/styles/index.css",
+         "release": "npm publish --access public"
+     }
+diff --git a/packages/properties/package.json b/packages/properties/package.json
+index f94a6774..cbcb2abb 100644
+--- a/packages/properties/package.json
++++ b/packages/properties/package.json
+@@ -43,9 +43,9 @@
+         "access": "public"
+     },
+     "scripts": {
+-        "clean": "rm -rf lib && mkdir lib",
++        "clean": "rimraf lib && mkdirp lib",
+         "build": "npm run clean && npm run js && npm run css",
+-        "js": "cp src/index.d.ts lib && cp dist/index.js lib && rollup -c ../../rollup.config.cjs",
++        "js": "copyfiles src/index.d.ts lib && copyfiles dist/index.js lib && rollup -c ../../rollup.config.cjs",
+         "css": "sass --no-source-map --style compressed src/styles/index.scss lib/styles/index.css",
+         "release": "npm publish --access public"
+     }
+diff --git a/packages/rotate/package.json b/packages/rotate/package.json
+index 66102bab..d76380d0 100644
+--- a/packages/rotate/package.json
++++ b/packages/rotate/package.json
+@@ -43,8 +43,8 @@
+         "access": "public"
+     },
+     "scripts": {
+-        "clean": "rm -rf lib && mkdir lib",
+-        "build": "npm run clean && cp src/index.d.ts lib && cp dist/index.js lib && rollup -c ../../rollup.config.cjs",
++        "clean": "rimraf lib && mkdirp lib",
++        "build": "npm run clean && copyfiles src/index.d.ts lib && copyfiles dist/index.js lib && rollup -c ../../rollup.config.cjs",
+         "release": "npm publish --access public"
+     }
+ }
+diff --git a/packages/scroll-mode/package.json b/packages/scroll-mode/package.json
+index 55f91186..d9bcabdb 100644
+--- a/packages/scroll-mode/package.json
++++ b/packages/scroll-mode/package.json
+@@ -43,9 +43,9 @@
+         "access": "public"
+     },
+     "scripts": {
+-        "clean": "rm -rf lib && mkdir lib",
++        "clean": "rimraf lib && mkdirp lib",
+         "build": "npm run clean && npm run js",
+-        "js": "cp src/index.d.ts lib && cp dist/index.js lib && rollup -c ../../rollup.config.cjs",
++        "js": "copyfiles src/index.d.ts lib && copyfiles dist/index.js lib && rollup -c ../../rollup.config.cjs",
+         "release": "npm publish --access public"
+     }
+ }
+diff --git a/packages/scroll-mode/src/switchScrollMode.ts b/packages/scroll-mode/src/SwitchScrollModeFunction.ts
+similarity index 100%
+rename from packages/scroll-mode/src/switchScrollMode.ts
+rename to packages/scroll-mode/src/SwitchScrollModeFunction.ts
+diff --git a/packages/scroll-mode/src/scrollModePlugin.tsx b/packages/scroll-mode/src/scrollModePlugin.tsx
+index be7e0af8..bb2f8231 100644
+--- a/packages/scroll-mode/src/scrollModePlugin.tsx
++++ b/packages/scroll-mode/src/scrollModePlugin.tsx
+@@ -23,8 +23,8 @@ import { SwitchScrollModeMenuItem } from './SwitchScrollModeMenuItem';
+ import { SwitchViewMode, SwitchViewModeProps } from './SwitchViewMode';
+ import { SwitchViewModeButton } from './SwitchViewModeButton';
+ import { SwitchViewModeMenuItem } from './SwitchViewModeMenuItem';
+-import { switchScrollMode } from './switchScrollMode';
+-import { switchViewMode } from './switchViewMode';
++import { switchScrollMode } from './SwitchScrollModeFunction';
++import { switchViewMode } from './switchViewModeFunction';
+ import { type StoreProps } from './types/StoreProps';
+ 
+ export interface SwitchScrollModeButtonProps {
+diff --git a/packages/scroll-mode/src/switchViewMode.ts b/packages/scroll-mode/src/switchViewModeFunction.ts
+similarity index 100%
+rename from packages/scroll-mode/src/switchViewMode.ts
+rename to packages/scroll-mode/src/switchViewModeFunction.ts
+diff --git a/packages/search/package.json b/packages/search/package.json
+index 29941bd3..c9d9c29f 100644
+--- a/packages/search/package.json
++++ b/packages/search/package.json
+@@ -43,9 +43,9 @@
+         "access": "public"
+     },
+     "scripts": {
+-        "clean": "rm -rf lib && mkdir lib",
++        "clean": "rimraf lib && mkdirp lib",
+         "build": "npm run clean && npm run js && npm run css",
+-        "js": "cp src/index.d.ts lib && cp dist/index.js lib && rollup -c ../../rollup.config.cjs",
++        "js": "copyfiles src/index.d.ts lib && copyfiles dist/index.js lib && rollup -c ../../rollup.config.cjs",
+         "css": "sass --no-source-map --style compressed src/styles/index.scss lib/styles/index.css",
+         "test": "jest --config ../../jest.config.js",
+         "release": "npm publish --access public"
+diff --git a/packages/selection-mode/package.json b/packages/selection-mode/package.json
+index c4207dc1..b2cc8687 100644
+--- a/packages/selection-mode/package.json
++++ b/packages/selection-mode/package.json
+@@ -43,9 +43,9 @@
+         "access": "public"
+     },
+     "scripts": {
+-        "clean": "rm -rf lib && mkdir lib",
++        "clean": "rimraf lib && mkdirp lib",
+         "build": "npm run clean && npm run js && npm run css",
+-        "js": "cp src/index.d.ts lib && cp dist/index.js lib && rollup -c ../../rollup.config.cjs",
++        "js": "copyfiles src/index.d.ts lib && copyfiles dist/index.js lib && rollup -c ../../rollup.config.cjs",
+         "css": "sass --no-source-map --style compressed src/styles/index.scss lib/styles/index.css",
+         "release": "npm publish --access public"
+     }
+diff --git a/packages/theme/package.json b/packages/theme/package.json
+index 290de322..340ff127 100644
+--- a/packages/theme/package.json
++++ b/packages/theme/package.json
+@@ -42,8 +42,8 @@
+         "access": "public"
+     },
+     "scripts": {
+-        "clean": "rm -rf lib && mkdir lib",
+-        "build": "npm run clean && cp src/index.d.ts lib && cp dist/index.js lib && rollup -c ../../rollup.config.cjs",
++        "clean": "rimraf lib && mkdirp lib",
++        "build": "npm run clean && copyfiles src/index.d.ts lib && copyfiles dist/index.js lib && rollup -c ../../rollup.config.cjs",
+         "test": "jest --config ../../jest.config.js",
+         "release": "npm publish --access public"
+     }
+diff --git a/packages/thumbnail/package.json b/packages/thumbnail/package.json
+index 9db00ed6..f6a892e2 100644
+--- a/packages/thumbnail/package.json
++++ b/packages/thumbnail/package.json
+@@ -43,9 +43,9 @@
+         "access": "public"
+     },
+     "scripts": {
+-        "clean": "rm -rf lib && mkdir lib",
++        "clean": "rimraf lib && mkdirp lib",
+         "build": "npm run clean && npm run js && npm run css",
+-        "js": "cp src/index.d.ts lib && cp dist/index.js lib && rollup -c ../../rollup.config.cjs",
++        "js": "copyfiles src/index.d.ts lib && copyfiles dist/index.js lib && rollup -c ../../rollup.config.cjs",
+         "css": "sass --no-source-map --style compressed src/styles/index.scss lib/styles/index.css",
+         "release": "npm publish --access public"
+     }
+diff --git a/packages/toolbar/package.json b/packages/toolbar/package.json
+index 4e12c839..456ee0aa 100644
+--- a/packages/toolbar/package.json
++++ b/packages/toolbar/package.json
+@@ -55,9 +55,9 @@
+         "access": "public"
+     },
+     "scripts": {
+-        "clean": "rm -rf lib && mkdir lib",
++        "clean": "rimraf lib && mkdirp lib",
+         "build": "npm run clean && npm run js && npm run css",
+-        "js": "cp src/index.d.ts lib && cp dist/index.js lib && rollup -c ../../rollup.config.cjs",
++        "js": "copyfiles src/index.d.ts lib && copyfiles dist/index.js lib && rollup -c ../../rollup.config.cjs",
+         "css": "sass --no-source-map --style compressed src/styles/index.scss lib/styles/index.css",
+         "release": "npm publish --access public"
+     }
+diff --git a/packages/zoom/package.json b/packages/zoom/package.json
+index b0371f4e..97f6daba 100644
+--- a/packages/zoom/package.json
++++ b/packages/zoom/package.json
+@@ -43,9 +43,9 @@
+         "access": "public"
+     },
+     "scripts": {
+-        "clean": "rm -rf lib && mkdir lib",
++        "clean": "rimraf lib && mkdirp lib",
+         "build": "npm run clean && npm run js && npm run css",
+-        "js": "cp src/index.d.ts lib && cp dist/index.js lib && rollup -c ../../rollup.config.cjs",
++        "js": "copyfiles src/index.d.ts lib && copyfiles dist/index.js lib && rollup -c ../../rollup.config.cjs",
+         "css": "sass --no-source-map --style compressed src/styles/index.scss lib/styles/index.css",
+         "test": "jest --config ../../jest.config.js",
+         "release": "npm publish --access public"
+-- 
+2.33.1.windows.1
+

@@ -43,9 +43,9 @@
         "access": "public"
     },
     "scripts": {
-        "clean": "rm -rf lib && mkdir lib",
+        "clean": "rimraf lib && mkdirp lib",
         "build": "npm run clean && npm run js && npm run css",
-        "js": "cp src/index.d.ts lib && cp dist/index.js lib && rollup -c ../../rollup.config.cjs",
+        "js": "copyfiles src/index.d.ts lib && copyfiles dist/index.js lib && rollup -c ../../rollup.config.cjs",
         "css": "sass --no-source-map --style compressed src/styles/index.scss lib/styles/index.css",
         "test": "jest --config ../../jest.config.js",
         "release": "npm publish --access public"
